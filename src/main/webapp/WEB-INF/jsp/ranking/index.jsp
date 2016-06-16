@@ -10,7 +10,7 @@
     <title>Unidos Contra a Dengue</title>
 
     <!-- Mainly styles -->
-    <link href="resources/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../resources/css/bootstrap.min.css" rel="stylesheet" />
     <link href="resources/fonts/font-awesome/css/font-awesome.css" rel="stylesheet" />
 
     <!-- Toastr -->
