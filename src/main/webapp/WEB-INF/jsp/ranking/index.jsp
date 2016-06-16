@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,12 +77,14 @@
                 </li>
 
                 <!-- Menu -->
-                <li>
-                    <a><i class="fa fa-th-large"></i>
+                <li class="active">
+                    <a>
+                        <i class="fa fa-th-large"></i>
                         <span class="nav-label">Painel de Controle</span>
-                        <span class="fa arrow"></span></a>
+                        <span class="fa arrow"></span>
+                    </a>
                     <ul class="nav nav-second-level">
-                        <li>
+                        <li class="active">
                             <a href="/ucd/ranking/index">Ranking</a>
                         </li>
                         <li>
@@ -120,7 +124,7 @@
 
                                 <!-- Titulo -->
                                 <div class="ibox-title">
-                                    <h5>Unidos Contra a Dengue</h5>
+                                    <h5>Ranking</h5>
                                     <div class="ibox-tools">
                                         <a class="collapse-link">
                                             <i class="fa fa-chevron-up"></i>
@@ -132,7 +136,9 @@
                                 </div>
 
                                 <!-- Demonstration -->
-                                <div class="ibox-content">Bem Vindo...</div>
+                                <div class="ibox-content">
+                                    <a type="button" class="btn btn-success btn-lg" href="/ucd/ranking/report">Gerar Relatório</a>
+                                </div>
 
                             </div>
                         </div>

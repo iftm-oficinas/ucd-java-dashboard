@@ -1,0 +1,19 @@
+#toast-container > .toast {
+    background-image: none !important;
+}
+
+#toast-container > .toast-warning:before {
+    content: "\f06a";
+}
+
+#toast-container > .toast-error:before {
+    content: "\f057";
+}
+
+#toast-container > .toast-info:before {
+    content: "\f05a";
+}
+
+#toast-container > .toast-success:before {
+    content: "\f058";
+}

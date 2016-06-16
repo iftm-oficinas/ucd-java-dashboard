@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,7 +77,7 @@
                 </li>
 
                 <!-- Menu -->
-                <li>
+                <li class="active">
                     <a><i class="fa fa-th-large"></i>
                         <span class="nav-label">Painel de Controle</span>
                         <span class="fa arrow"></span></a>
@@ -86,7 +88,7 @@
                         <li>
                             <a href="/ucd/user/index">Usuários</a>
                         </li>
-                        <li>
+                        <li class="active">
                             <a href="/ucd/complaint/index">Denúncias</a>
                         </li>
                     </ul>
@@ -120,7 +122,7 @@
 
                                 <!-- Titulo -->
                                 <div class="ibox-title">
-                                    <h5>Unidos Contra a Dengue</h5>
+                                    <h5>Alterar Denúncia</h5>
                                     <div class="ibox-tools">
                                         <a class="collapse-link">
                                             <i class="fa fa-chevron-up"></i>
@@ -132,7 +134,34 @@
                                 </div>
 
                                 <!-- Demonstration -->
-                                <div class="ibox-content">Bem Vindo...</div>
+                                <div class="ibox-content">
+
+                                    <div class="row">
+                                        <div class="col-sm-12 b-r">
+                                            <form role="form">
+                                                <div class="form-group">
+                                                    <label>Latitude</label>
+                                                    <input type="text" placeholder="Latitude" class="form-control" value="${complaint.latitude}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Longitude</label>
+                                                    <input type="text" placeholder="Longitude" class="form-control" value="${complaint.longitude}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Descrição</label>
+                                                    <textarea maxlength="50" placeholder="Description" class="form-control">${complaint.description}</textarea>
+                                                </div>
+                                                <div>
+                                                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs"
+                                                            type="submit">
+                                                        <strong>Atualizar</strong>
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                </div>
 
                             </div>
                         </div>

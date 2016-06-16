@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,7 +77,7 @@
                 </li>
 
                 <!-- Menu -->
-                <li>
+                <li class="active">
                     <a><i class="fa fa-th-large"></i>
                         <span class="nav-label">Painel de Controle</span>
                         <span class="fa arrow"></span></a>
@@ -86,7 +88,7 @@
                         <li>
                             <a href="/ucd/user/index">Usuários</a>
                         </li>
-                        <li>
+                        <li class="active">
                             <a href="/ucd/complaint/index">Denúncias</a>
                         </li>
                     </ul>
@@ -120,7 +122,7 @@
 
                                 <!-- Titulo -->
                                 <div class="ibox-title">
-                                    <h5>Unidos Contra a Dengue</h5>
+                                    <h5>Denúncias</h5>
                                     <div class="ibox-tools">
                                         <a class="collapse-link">
                                             <i class="fa fa-chevron-up"></i>
@@ -131,8 +133,44 @@
                                     </div>
                                 </div>
 
-                                <!-- Demonstration -->
-                                <div class="ibox-content">Bem Vindo...</div>
+                                <!-- Tabela -->
+                                <div class="ibox-content">
+
+                                    <a href="/ucd/complaint/create" type="button" class="btn btn-success pull-right">Nova Denúncia</a>
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Usuário</th>
+                                            <th>Inspetor</th>
+                                            <th>Status</th>
+                                            <th>Latitude</th>
+                                            <th>Longitude</th>
+                                            <th>Descrição</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach var="complaint" items="${complaintList}">
+                                                <tr>
+                                                    <td>${complaint.id}</td>
+                                                    <td>${complaint.user.name}</td>
+                                                    <td>${complaint.inspector.name}</td>
+                                                    <td>${complaint.status}</td>
+                                                    <td>${complaint.latitude}</td>
+                                                    <td>${complaint.longitude}</td>
+                                                    <td>${complaint.description}</td>
+                                                    <td width="100px">
+                                                        <a href="/ucd/complaint/edit" type="button" class="btn btn-white btn-xs"><i class="fa fa-pencil"></i></a>
+                                                        <a href="/ucd/complaint/destroy" type="button" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
+                                                        <a href="/ucd/complaint/inspect" type="button" class="btn btn-success btn-xs"><i class="fa fa-check"></i></a>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
+
+                                </div>
 
                             </div>
                         </div>
