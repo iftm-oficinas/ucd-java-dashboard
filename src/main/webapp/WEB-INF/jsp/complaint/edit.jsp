@@ -10,43 +10,43 @@
     <title>Unidos Contra a Dengue</title>
 
     <!-- Mainly styles -->
-    <link href="resources/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="resources/fonts/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="../resources/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../resources/fonts/font-awesome/css/font-awesome.css" rel="stylesheet" />
 
     <!-- Toastr -->
-    <link href="resources/css/plugins/toastr/toastr.min.css" rel="stylesheet" />
+    <link href="../resources/css/plugins/toastr/toastr.min.css" rel="stylesheet" />
 
     <!-- Gritter -->
-    <link href="resources/js/plugins/gritter/jquery.gritter.css" rel="stylesheet" />
+    <link href="../resources/js/plugins/gritter/jquery.gritter.css" rel="stylesheet" />
 
     <!-- Custom styles -->
-    <link href="resources/css/animate.css" rel="stylesheet" />
-    <link href="resources/css/style.css" rel="stylesheet" />
-    <link href="resources/css/toastr.css" rel="stylesheet" />
+    <link href="../resources/css/animate.css" rel="stylesheet" />
+    <link href="../resources/css/style.css" rel="stylesheet" />
+    <link href="../resources/css/toastr.css" rel="stylesheet" />
 
     <!-- Mainly scripts -->
-    <script src="resources/js/jquery-2.2.2.js"></script>
-    <script src="resources/js/bootstrap.min.js"></script>
-    <script src="resources/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="resources/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="../resources/js/jquery-2.2.2.js"></script>
+    <script src="../resources/js/bootstrap.min.js"></script>
+    <script src="../resources/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="../resources/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
     <!-- Peity -->
-    <script src="resources/js/plugins/peity/jquery.peity.min.js"></script>
+    <script src="../resources/js/plugins/peity/jquery.peity.min.js"></script>
 
     <!-- Inspinia -->
-    <script src="resources/js/inspinia.js"></script>
+    <script src="../resources/js/inspinia.js"></script>
     
     <!-- Pace -->
-    <script src="resources/js/plugins/pace/pace.min.js"></script>
+    <script src="../resources/js/plugins/pace/pace.min.js"></script>
 
     <!-- jQuery UI -->
-    <script src="resources/js/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../resources/js/plugins/jquery-ui/jquery-ui.min.js"></script>
 
     <!-- GITTER -->
-    <script src="resources/js/plugins/gritter/jquery.gritter.min.js"></script>
+    <script src="../resources/js/plugins/gritter/jquery.gritter.min.js"></script>
 
     <!-- Toastr -->
-    <script src="resources/js/plugins/toastr/toastr.min.js"></script>
+    <script src="../resources/js/plugins/toastr/toastr.min.js"></script>
 
 </head>
 
@@ -185,8 +185,8 @@
 </div>
 
 <!-- Custom javascripts -->
-<script src="resources/js/alert.js"></script>
-<script src="resources/js/peity.js"></script>
+<script src="../resources/js/alert.js"></script>
+<script src="../resources/js/peity.js"></script>
 
 </body>
 </html>
