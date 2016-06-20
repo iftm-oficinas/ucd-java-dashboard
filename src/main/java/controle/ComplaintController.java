@@ -17,5 +17,15 @@ public class ComplaintController {
         List<Complaint> users = new ArrayList<>();
         return users;
     }
+    
+    public List<Complaint> create() {
+        List<Complaint> users = new ArrayList<>();
+        return users;
+    }
+    
+    public List<Complaint> edit() {
+        List<Complaint> users = new ArrayList<>();
+        return users;
+    }
 
 }
