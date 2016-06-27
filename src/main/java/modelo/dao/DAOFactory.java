@@ -14,7 +14,7 @@ public class DAOFactory {
             return new UserDAO(conection);
         }
     }
-    
+
     public ComplaintDAO createComplaintDAO() {
         if (conection == null) {
             throw new IllegalStateException("[ERROR] Open a conecion before create a DAO.");
@@ -22,7 +22,7 @@ public class DAOFactory {
             return new ComplaintDAO(conection);
         }
     }
-    
+
     public ComplaintPhotoDAO createComplaintPhotoDAO() {
         if (conection == null) {
             throw new IllegalStateException("[ERROR] Open a conecion before create a DAO.");
@@ -49,33 +49,33 @@ public class DAOFactory {
         }
     }
 
-    public void iniciarTransacao() throws SQLException {
+    public void startTransaction() throws SQLException {
         conection.setAutoCommit(false);
     }
 
-    public void terminarTransacao() throws SQLException {
+    public void closeTransaction() throws SQLException {
         conection.commit();
         conection.setAutoCommit(true);
     }
 
-    public void abortarTransacao() throws SQLException {
+    public void abortTransaction() throws SQLException {
         conection.rollback();
         conection.setAutoCommit(true);
     }
 
-    public static void mostrarSQLException(SQLException ex) {
+    public static void showSQLException(SQLException ex) {
         SQLException e = ex;
         while (e != null) {
             System.out.println("SQL State: " + e.getSQLState());
             System.out.println("Error Code: " + e.getErrorCode());
-            System.out.println("Mensagem: " + e.getMessage());
+            System.out.println("Message: " + e.getMessage());
             Throwable t = e.getCause();
             while (t != null) {
-                System.out.println("Causa: " + t);
+                System.out.println("[ERROR] " + t);
                 t = t.getCause();
             }
             e = e.getNextException();
         }
     }
-    
+
 }
