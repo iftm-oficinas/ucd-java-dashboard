@@ -1,6 +1,9 @@
 package modelo.dao;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.User;
@@ -27,8 +30,26 @@ public class UserDAO {
         return user;
     }
     
-    public List<User> fetchAll() {
+    public List<User> fetchAll() throws SQLException { 
+        
+        User user;
         List<User> users = new ArrayList<>();
+        String query = "SELECT * FROM user";
+        try (Statement stmt = connection.createStatement()) {
+            try (ResultSet rs = stmt.executeQuery(query)) {
+                while (rs.next()) {
+                    user = new User();
+                    user.setId(rs.getInt(1));
+                    user.setName(rs.getString(2));
+                    user.setEmail(rs.getString(3));
+                    user.setPassword(rs.getString(4));
+                    user.setInspector(rs.getByte(5));
+                    user.setScore(rs.getByte(6));
+                    users.add(user);
+                }
+            }
+        }
+        
         return users;
     }
     

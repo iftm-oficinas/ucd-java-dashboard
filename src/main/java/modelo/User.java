@@ -2,20 +2,21 @@ package modelo;
 
 public class User {
 
-    private int id;
+    private Integer id;
     private String name;
     private String email;
     private String password;
     private Byte inspector;
-
+    private Byte Score;
+    
     public User() {
     }
 
-    public User(int id) {
+    public User(Integer id) {
         this.id = id;
     }
 
-    public User(int id, String name, String email, String password, Byte inspector, Byte score) {
+    public User(Integer id, String name, String email, String password, Byte inspector, Byte score) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -28,7 +29,7 @@ public class User {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
