@@ -2,9 +2,9 @@ package modelo;
 
 public class Complaint {
 
-    private int id;
-    private int id_user;
-    private int id_inspector;
+    private Integer id;
+    private Integer id_user;
+    private Integer id_inspector;
     private String status;
     private String latitude;
     private String longitude;
@@ -13,11 +13,11 @@ public class Complaint {
     public Complaint() {
     }
 
-    public Complaint(int id) {
+    public Complaint(Integer id) {
         this.id = id;
     }
 
-    public Complaint(int id, int id_user, int id_inspector, String status, String latitude, String longitude, String description) {
+    public Complaint(Integer id, Integer id_user, Integer id_inspector, String status, String latitude, String longitude, String description) {
         this.id = id;
         this.id_user = id_user;
         this.id_inspector = id_inspector;
@@ -27,27 +27,27 @@ public class Complaint {
         this.description = description;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getId_user() {
+    public Integer getId_user() {
         return id_user;
     }
 
-    public void setId_user(int id_user) {
+    public void setId_user(Integer id_user) {
         this.id_user = id_user;
     }
 
-    public int getId_inspector() {
+    public Integer getId_inspector() {
         return id_inspector;
     }
 
-    public void setId_inspector(int id_inspector) {
+    public void setId_inspector(Integer id_inspector) {
         this.id_inspector = id_inspector;
     }
 
