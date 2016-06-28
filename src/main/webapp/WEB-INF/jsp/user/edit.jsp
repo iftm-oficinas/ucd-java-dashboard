@@ -138,18 +138,18 @@
 
                                     <div class="row">
                                         <div class="col-sm-12 b-r">
-                                            <form role="form">
+                                            <form role="form" action="/ucd/user/update" method="POST">
                                                 <div class="form-group">
                                                     <label>Nome</label>
-                                                    <input type="text" placeholder="Name" class="form-control" value="${user.name}">
+                                                    <input type="text" placeholder="${user.name}" class="form-control" value="${user.name}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Email</label>
-                                                    <input type="email" placeholder="Email" class="form-control" value="${user.email}">
+                                                    <input type="email" placeholder="${user.email}" class="form-control" value="${user.email}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Senha</label>
-                                                    <input type="password" placeholder="Password" class="form-control" value="${user.score}">
+                                                    <input type="password" placeholder="${user.password}" class="form-control" value="${user.score}">
                                                 </div>
                                                 <div>
                                                     <button class="btn btn-sm btn-primary pull-right m-t-n-xs"

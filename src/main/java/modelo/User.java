@@ -7,7 +7,7 @@ public class User {
     private String email;
     private String password;
     private Byte inspector;
-    private Byte Score;
+    private Byte score;
     
     public User() {
     }
@@ -72,11 +72,12 @@ public class User {
     public void setScore(Byte score) {
         this.score = score;
     }
-    private Byte score;
 
     @Override
     public String toString() {
         return "User{" + "id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", inspector=" + inspector + ", score=" + score + '}';
     }
+
+    
 
 }

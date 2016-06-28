@@ -43,12 +43,29 @@ public class UserController {
         // retorna somente a view.
     }
 
-    public User store() {
+    public void store(User user) {
         // save.
 
-        User user = new User();
-        return user;
+        DAOFactory factory = new DAOFactory();
+        try {
+            factory.openConnection();
+            UserDAO dao = factory.createUserDAO();
+            dao.save(user);
+        } catch (SQLException ex) {
+            System.out.println("Erro no acesso ao banco de dados.");
+            DAOFactory.showSQLException(ex);
+        } finally {
+            try {
+                factory.closeConnection();
+            } catch (SQLException ex) {
+                System.out.println("Erro ao fechar a conexão com o BD.");
+                DAOFactory.showSQLException(ex);
+            }
+        }
+        result.redirectTo(UserController.class).index();
     }
+
+    
 
     public User edit(Integer idComplaint) {
         // buscar o manolo pelo id pra editar.
@@ -58,15 +75,15 @@ public class UserController {
     }
 
     public User update(User user) {
-        // alera o cara aqui.
+        // altera o cara aqui.
 
         return user;
     }
 
-    public Boolean destroy(Integer idComplaint) {
+    public void destroy(Integer idComplaint) {
         // kill him!!
 
-        return true;// ou falso se der errado (try/catch)
+        
     }
 
 }

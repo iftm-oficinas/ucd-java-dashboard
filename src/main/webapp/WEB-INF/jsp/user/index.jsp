@@ -154,6 +154,7 @@
                                                             <td>${user.id}</td>
                                                             <td>${user.name}</td>
                                                             <td>${user.email}</td>
+                                                            
                                                             <c:if test="${user.inspector == 1}">
                                                                 <td><i class="fa fa-check text-navy"></i></td>                                                                
                                                             </c:if>

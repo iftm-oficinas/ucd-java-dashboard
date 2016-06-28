@@ -141,21 +141,21 @@
                                             <form role="form" action="/ucd/user/store" method="POST">
                                                 <div class="form-group">
                                                     <label>Nome</label>
-                                                    <input type="text" placeholder="Name" class="form-control">
+                                                    <input type="text" placeholder="Nome" class="form-control" name="user.name">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Email</label>
-                                                    <input type="email" placeholder="Email" class="form-control">
+                                                    <input type="email" placeholder="Email" class="form-control" name="user.email">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Senha</label>
-                                                    <input type="password" placeholder="Password" class="form-control">
+                                                    <input type="password" placeholder="Senha" class="form-control" name="user.password">
                                                 </div>
                                                 <div>
                                                     <button class="btn btn-sm btn-primary pull-right m-t-n-xs"
                                                             type="submit"><strong>Cadastrar</strong></button>
                                                     <label>
-                                                        <input type="checkbox" class="i-checks"> Inspetor?
+                                                        <input type="checkbox" class="i-checks" name="user.inspector" value="1"> Inspetor?
                                                     </label>
                                                 </div>
                                             </form>

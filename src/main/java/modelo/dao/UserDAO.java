@@ -1,6 +1,7 @@
 package modelo.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -15,23 +16,58 @@ public class UserDAO {
     public UserDAO(Connection connection) {
         this.connection = connection;
     }
-    
-    public User save(){
-        User user = new User();
-        return user;
+
+    public String save(User user) throws SQLException {
+
+        String query = "INSERT INTO user (name, email, password, inspector) VALUES (?, ?, ?, ?);";
+        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+            pstmt.setString(1, user.getName());
+            pstmt.setString(2, user.getEmail());
+            pstmt.setString(3, user.getPassword());
+            
+            System.out.println(user.getInspector());
+            
+            if (user.getInspector() != null) {
+                pstmt.setByte(4, user.getInspector());
+            }else{
+                pstmt.setByte(4, (byte)0);
+            }
+            int result = pstmt.executeUpdate();
+            if (result == 1) {
+                return ("\nInserção bem sucedida.");
+            } else {
+                return ("A inserção não foi feita corretamente.");
+            }
+        }
+//        User user = new User();
+//        return user;
     }
-    
-    public User update(User user) {
-        return user;
+
+    public String update(User user) throws SQLException {
+
+        String query = "UPDATE user SET name = ?, email = ?, password = ?, Inspector = ? WHERE id = ?;";
+        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+            pstmt.setString(1, user.getName());
+            pstmt.setString(2, user.getEmail());
+            pstmt.setString(3, user.getPassword());
+            pstmt.setByte(4, user.getInspector());
+            pstmt.setInt(5, user.getId());
+            int alteracoes = pstmt.executeUpdate();
+            if (alteracoes == 1) {
+                return ("\nAlteracao bem sucedida.");
+            } else {
+                return ("A alteracao não foi feita corretamente.");
+            }
+        }
     }
-    
+
     public User fetchOne(Integer idUser) {
         User user = new User();
         return user;
     }
-    
-    public List<User> fetchAll() throws SQLException { 
-        
+
+    public List<User> fetchAll() throws SQLException {
+
         User user;
         List<User> users = new ArrayList<>();
         String query = "SELECT * FROM user";
@@ -49,14 +85,14 @@ public class UserDAO {
                 }
             }
         }
-        
+
         return users;
     }
-    
+
     public Boolean delete(Integer idUser) {
         return true;
     }
-    
+
     public List<User> fetchAllOrderByScore() {
         List<User> users = new ArrayList<>();
         return users;
