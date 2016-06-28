@@ -39,9 +39,21 @@ public class ComplaintController {
         // retorna somente a view.
     }
     
-    public void store () {
-        // save.
-        
+    public void store (Complaint complaint) {
+        DAOFactory factory = new DAOFactory();
+        try {
+            factory.openConnection();
+            ComplaintDAO dao = factory.createComplaintDAO();
+            dao.save(complaint);
+        } catch (SQLException ex) {
+            DAOFactory.showSQLException(ex);
+        } finally {
+            try {
+                factory.closeConnection();
+            } catch (SQLException ex) {
+                DAOFactory.showSQLException(ex);
+            }
+        }
         result.redirectTo(ComplaintController.class).index();
     }
     

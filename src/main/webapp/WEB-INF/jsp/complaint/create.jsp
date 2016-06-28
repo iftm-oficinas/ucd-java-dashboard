@@ -141,15 +141,15 @@
                                             <form role="form" action="/ucd/complaint/store" method="POST">
                                                 <div class="form-group">
                                                     <label>Latitude</label>
-                                                    <input type="text" placeholder="Latitude" class="form-control">
+                                                    <input type="text" placeholder="Latitude" class="form-control" name="complaint.latitude">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Longitude</label>
-                                                    <input type="text" placeholder="Longitude" class="form-control">
+                                                    <input type="text" placeholder="Longitude" class="form-control" name="complaint.longitude">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Descrição</label>
-                                                    <textarea maxlength="50" placeholder="Description" class="form-control"></textarea>
+                                                    <textarea maxlength="50" placeholder="Description" class="form-control" name="complaint.description"></textarea>
                                                 </div>
                                                 <div>
                                                     <button class="btn btn-sm btn-primary pull-right m-t-n-xs"

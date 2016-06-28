@@ -19,14 +19,13 @@ public class ComplaintDAO {
 
     public String save(Complaint complaint) throws SQLException {
 
-        String query = "INSERT INTO complaint (id_user, id_complaint, status, latitude, longitude, description) VALUES (?, ?, ?, ?, ?, ?);";
+        String query = "INSERT INTO complaint (id_user, status, latitude, longitude, description) VALUES (?, ?, ?, ?, ?);";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
-            pstmt.setString(1, complaint.getId_user().toString());
-            pstmt.setString(2, complaint.getId_inspector().toString());
-            pstmt.setString(3, complaint.getStatus());
-            pstmt.setString(4, complaint.getLatitude());
-            pstmt.setString(5, complaint.getLongitude());
-            pstmt.setString(6, complaint.getDescription());
+            pstmt.setInt(1, 1);
+            pstmt.setString(2, "STARTED");
+            pstmt.setString(3, complaint.getLatitude());
+            pstmt.setString(4, complaint.getLongitude());
+            pstmt.setString(5, complaint.getDescription());
             pstmt.executeUpdate();
             return "SUCCESS";
         } catch (SQLException ex) {
