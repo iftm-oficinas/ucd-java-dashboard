@@ -2,10 +2,11 @@ package modelo.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import modelo.Complaint;
 
 public class ComplaintDAO {
@@ -15,9 +16,9 @@ public class ComplaintDAO {
     public ComplaintDAO(Connection connection) {
         this.connection = connection;
     }
-    
-    public Complaint save(Complaint complaint){
-        
+
+    public String save(Complaint complaint) throws SQLException {
+
         String query = "INSERT INTO complaint (id_user, id_complaint, status, latitude, longitude, description) VALUES (?, ?, ?, ?, ?, ?);";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
             pstmt.setString(1, complaint.getId_user().toString());
@@ -27,27 +28,43 @@ public class ComplaintDAO {
             pstmt.setString(5, complaint.getLongitude());
             pstmt.setString(6, complaint.getDescription());
             pstmt.executeUpdate();
-        } catch(Exception ex) {
-            return null;
+            return "SUCCESS";
+        } catch (SQLException ex) {
+            return ex.getMessage();
         }
-        
-        return complaint;
     }
-    
+
     public Complaint update(Complaint complaint) {
         return complaint;
     }
-    
+
     public Complaint fetchOne(Integer idComplaint) {
         Complaint complaint = new Complaint();
         return complaint;
     }
-    
-    public List<Complaint> fetchAll() {
+
+    public List<Complaint> fetchAll() throws SQLException {
+        Complaint complaint;
         List<Complaint> complaints = new ArrayList<>();
+        String query = "SELECT * FROM complaint";
+        try (Statement stmt = connection.createStatement()) {
+            try (ResultSet rs = stmt.executeQuery(query)) {
+                while (rs.next()) {
+                    complaint = new Complaint();
+                    complaint.setId(rs.getInt(1));
+                    complaint.setId_user(rs.getInt(2));
+                    complaint.setId_inspector(rs.getInt(3));
+                    complaint.setLatitude(rs.getString(4));
+                    complaint.setLongitude(rs.getString(5));
+                    complaint.setStatus(rs.getString(6));
+                    complaint.setDescription(rs.getString(7));
+                    complaints.add(complaint);
+                }
+            }
+        }
         return complaints;
     }
-    
+
     public Boolean delete(Integer idComplaint) {
         return true;
     }
