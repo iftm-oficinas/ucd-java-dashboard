@@ -2,10 +2,13 @@ package controle;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Result;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import modelo.Complaint;
+import modelo.dao.ComplaintDAO;
+import modelo.dao.DAOFactory;
 
 @Controller
 public class ComplaintController {
@@ -14,21 +17,32 @@ public class ComplaintController {
     private Result result;
     
     public List<Complaint> index() {
-        // busca sapoha tudo.
-        
-        List<Complaint> users = new ArrayList<>();
-        return users;
+        List<Complaint> complaints = new ArrayList<>();
+        DAOFactory factory = new DAOFactory();
+        try {
+            factory.openConnection();
+            ComplaintDAO dao = factory.createComplaintDAO();
+            complaints = dao.fetchAll();
+        } catch (SQLException ex) {
+            DAOFactory.showSQLException(ex);
+        } finally {
+            try {
+                factory.closeConnection();
+            } catch (SQLException ex) {
+                DAOFactory.showSQLException(ex);
+            }
+        }
+        return complaints;
     }
     
     public void create() {
         // retorna somente a view.
     }
     
-    public Complaint store () {
+    public void store () {
         // save.
         
-        Complaint complaint = new Complaint();
-        return complaint;
+        result.redirectTo(ComplaintController.class).index();
     }
     
     public Complaint edit(Integer idComplaint) {
@@ -38,16 +52,16 @@ public class ComplaintController {
         return complaint;
     }
     
-    public Complaint update(Complaint complaint) {
+    public void update(Complaint complaint) {
         // alera o cara aqui.
         
-        return complaint;
+        result.redirectTo(ComplaintController.class).index();
     }
     
-    public Boolean destroy(Integer idComplaint) {
+    public void destroy(Integer idComplaint) {
         // kill him!!
         
-        return true;// ou falso se der errado (try/catch)
+        result.redirectTo(ComplaintController.class).index();
     }
 
 }

@@ -154,8 +154,8 @@
                                             <c:forEach var="complaint" items="${complaintList}">
                                                 <tr>
                                                     <td>${complaint.id}</td>
-                                                    <td>${complaint.user.name}</td>
-                                                    <td>${complaint.inspector.name}</td>
+                                                    <td>${complaint.id_user}</td>
+                                                    <td>${complaint.id_inspector}</td>
                                                     <td>${complaint.status}</td>
                                                     <td>${complaint.latitude}</td>
                                                     <td>${complaint.longitude}</td>
