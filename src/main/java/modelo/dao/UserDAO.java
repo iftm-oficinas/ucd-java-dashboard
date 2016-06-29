@@ -112,7 +112,7 @@ public class UserDAO {
 
     public String delete(User user) throws SQLException {
 
-        String query = "DELETE FROM user WHERE idContato = ?";
+        String query = "DELETE FROM user WHERE id = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
             pstmt.setInt(1, user.getId());
             int remocoes = pstmt.executeUpdate();
@@ -122,10 +122,5 @@ public class UserDAO {
                 return ("Não foi possível efetuar a remoção.");
             }
         }
-    }
-
-    public List<User> fetchAllOrderByScore() {
-        List<User> users = new ArrayList<>();
-        return users;
     }
 }
