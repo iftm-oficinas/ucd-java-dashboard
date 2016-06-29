@@ -19,7 +19,7 @@ public class UserDAO {
 
     public String save(User user) throws SQLException {
 
-        String query = "INSERT INTO user (name, email, password, inspector) VALUES (?, ?, ?, ?);";
+        String query = "INSERT INTO user (name, email, password, inspector, score) VALUES (?, ?, ?, ?, ?);";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
             pstmt.setString(1, user.getName());
             pstmt.setString(2, user.getEmail());
@@ -28,10 +28,11 @@ public class UserDAO {
             System.out.println(user.getInspector());
             
             if (user.getInspector() != null) {
-                pstmt.setByte(4, user.getInspector());
+                pstmt.setByte(4, (byte)1);
             }else{
                 pstmt.setByte(4, (byte)0);
             }
+            pstmt.setByte(5, (byte)0);
             int result = pstmt.executeUpdate();
             if (result == 1) {
                 return ("\nInserção bem sucedida.");

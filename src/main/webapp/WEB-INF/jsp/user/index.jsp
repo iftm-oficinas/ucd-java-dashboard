@@ -165,8 +165,8 @@
 
                                                             <td>${user.score}</td>
                                                             <td>
-                                                                <a href="/ucd/user/edit" type="button" class="btn btn-white btn-xs"><i class="fa fa-pencil"></i></a>
-                                                                <a href="/ucd/user/destroy" type="button" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
+                                                                <a href="/ucd/user/edit?id=${user.id}" type="button" class="btn btn-white btn-xs"><i class="fa fa-pencil"></i></a>
+                                                                <a href="/ucd/user/destroy?id=${user.id}" type="button" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
                                                             </td>
                                                         </tr>
                                                     </c:forEach>
