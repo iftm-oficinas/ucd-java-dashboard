@@ -67,7 +67,7 @@ public class UserController {
 
     
 
-    public User edit(Integer idComplaint) {
+    public User edit(Integer id) {
         // buscar o manolo pelo id pra editar.
 
         User user = new User();
