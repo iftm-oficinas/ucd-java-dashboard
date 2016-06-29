@@ -68,20 +68,71 @@ public class UserController {
     
 
     public User edit(Integer id) {
-        // buscar o manolo pelo id pra editar.
-
+        
         User user = new User();
+        DAOFactory factory = new DAOFactory();
+        try {
+            factory.openConnection();
+            UserDAO dao = factory.createUserDAO();
+            user = dao.fetchOne(id);
+        } catch (SQLException ex) {
+            System.out.println("Erro no acesso ao banco de dados.");
+            DAOFactory.showSQLException(ex);
+        } finally {
+            try {
+                factory.closeConnection();
+            } catch (SQLException ex) {
+                System.out.println("Erro ao fechar a conexão com o BD.");
+                DAOFactory.showSQLException(ex);
+            }
+        }
         return user;
     }
 
-    public User update(User user) {
+    public void update(User user) {
         // altera o cara aqui.
-
-        return user;
+        
+        DAOFactory factory = new DAOFactory();
+        try {
+            factory.openConnection();
+            UserDAO dao = factory.createUserDAO();
+            dao.update(user);
+        } catch (SQLException ex) {
+            System.out.println("Erro no acesso ao banco de dados.");
+            DAOFactory.showSQLException(ex);
+        } finally {
+            try {
+                factory.closeConnection();
+            } catch (SQLException ex) {
+                System.out.println("Erro ao fechar a conexão com o BD.");
+                DAOFactory.showSQLException(ex);
+            }
+        }
+        result.redirectTo(UserController.class).index();
     }
 
-    public void destroy(Integer idComplaint) {
+    public void destroy(Integer id) {
         // kill him!!
+        
+        User user = null;
+        DAOFactory factory = new DAOFactory();
+        try {
+            factory.openConnection();
+            UserDAO dao = factory.createUserDAO();
+            user = dao.fetchOne(id);
+            dao.delete(user);
+        } catch (SQLException ex) {
+            System.out.println("Erro no acesso ao banco de dados.");
+            DAOFactory.showSQLException(ex);
+        } finally {
+            try {
+                factory.closeConnection();
+            } catch (SQLException ex) {
+                System.out.println("Erro ao fechar a conexão com o BD.");
+                DAOFactory.showSQLException(ex);
+            }
+        }
+        result.redirectTo(UserController.class).index();
 
         
     }

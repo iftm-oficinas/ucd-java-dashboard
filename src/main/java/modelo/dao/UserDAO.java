@@ -24,15 +24,15 @@ public class UserDAO {
             pstmt.setString(1, user.getName());
             pstmt.setString(2, user.getEmail());
             pstmt.setString(3, user.getPassword());
-            
+
             System.out.println(user.getInspector());
-            
+
             if (user.getInspector() != null) {
-                pstmt.setByte(4, (byte)1);
-            }else{
-                pstmt.setByte(4, (byte)0);
+                pstmt.setByte(4, (byte) 1);
+            } else {
+                pstmt.setByte(4, (byte) 0);
             }
-            pstmt.setByte(5, (byte)0);
+            pstmt.setByte(5, (byte) 0);
             int result = pstmt.executeUpdate();
             if (result == 1) {
                 return ("\nInserção bem sucedida.");
@@ -45,13 +45,17 @@ public class UserDAO {
     }
 
     public String update(User user) throws SQLException {
-
+        
         String query = "UPDATE user SET name = ?, email = ?, password = ?, Inspector = ? WHERE id = ?;";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
             pstmt.setString(1, user.getName());
             pstmt.setString(2, user.getEmail());
             pstmt.setString(3, user.getPassword());
-            pstmt.setByte(4, user.getInspector());
+            if (user.getInspector() != null) {
+                pstmt.setByte(4, (byte) 1);
+            } else {
+                pstmt.setByte(4, (byte) 0);
+            }
             pstmt.setInt(5, user.getId());
             int alteracoes = pstmt.executeUpdate();
             if (alteracoes == 1) {
@@ -62,8 +66,24 @@ public class UserDAO {
         }
     }
 
-    public User fetchOne(Integer idUser) {
-        User user = new User();
+    public User fetchOne(Integer id) throws SQLException {
+
+        User user = null;
+        String query = "SELECT * FROM user WHERE id = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+            pstmt.setInt(1, id);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    user = new User();
+                    user.setId(rs.getInt(1));
+                    user.setName(rs.getString(2));
+                    user.setEmail(rs.getString(3));
+                    user.setPassword(rs.getString(4));
+                    user.setInspector(rs.getByte(5));
+                    user.setScore(rs.getByte(6));
+                }
+            }
+        }
         return user;
     }
 
@@ -90,8 +110,18 @@ public class UserDAO {
         return users;
     }
 
-    public Boolean delete(Integer idUser) {
-        return true;
+    public String delete(User user) throws SQLException {
+
+        String query = "DELETE FROM user WHERE idContato = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+            pstmt.setInt(1, user.getId());
+            int remocoes = pstmt.executeUpdate();
+            if (remocoes == 1) {
+                return ("Remoção efetuada com sucesso.");
+            } else {
+                return ("Não foi possível efetuar a remoção.");
+            }
+        }
     }
 
     public List<User> fetchAllOrderByScore() {
