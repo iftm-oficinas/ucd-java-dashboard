@@ -58,20 +58,59 @@ public class ComplaintController {
     }
     
     public Complaint edit(Integer idComplaint) {
-        // buscar o manolo pelo id pra editar.
-        
-        Complaint complaint = new Complaint();
+        Complaint complaint = null;
+        DAOFactory factory = new DAOFactory();
+        try {
+            factory.openConnection();
+            ComplaintDAO dao = factory.createComplaintDAO();
+            complaint = dao.fetchOne(idComplaint);
+        } catch (SQLException ex) {
+            DAOFactory.showSQLException(ex);
+        } finally {
+            try {
+                factory.closeConnection();
+            } catch (SQLException ex) {
+                DAOFactory.showSQLException(ex);
+            }
+        }
         return complaint;
     }
     
     public void update(Complaint complaint) {
-        // alera o cara aqui.
+        DAOFactory factory = new DAOFactory();
+        try {
+            factory.openConnection();
+            ComplaintDAO dao = factory.createComplaintDAO();
+            dao.update(complaint);
+        } catch (SQLException ex) {
+            DAOFactory.showSQLException(ex);
+        } finally {
+            try {
+                factory.closeConnection();
+            } catch (SQLException ex) {
+                DAOFactory.showSQLException(ex);
+            }
+        }
         
         result.redirectTo(ComplaintController.class).index();
     }
     
     public void destroy(Integer idComplaint) {
-        // kill him!!
+        DAOFactory factory = new DAOFactory();
+        try {
+            factory.openConnection();
+            ComplaintDAO dao = factory.createComplaintDAO();
+            Complaint complaint = dao.fetchOne(idComplaint);
+            dao.delete(complaint);
+        } catch (SQLException ex) {
+            DAOFactory.showSQLException(ex);
+        } finally {
+            try {
+                factory.closeConnection();
+            } catch (SQLException ex) {
+                DAOFactory.showSQLException(ex);
+            }
+        }
         
         result.redirectTo(ComplaintController.class).index();
     }

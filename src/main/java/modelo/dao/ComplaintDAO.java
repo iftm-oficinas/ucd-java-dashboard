@@ -33,12 +33,38 @@ public class ComplaintDAO {
         }
     }
 
-    public Complaint update(Complaint complaint) {
-        return complaint;
+    public String update(Complaint complaint) throws SQLException {
+        String alteracao = "UPDATE complaint SET latitude = ?, longitude = ?, description = ? WHERE id = ?;";
+        try (PreparedStatement pstmt = connection.prepareStatement(alteracao)) {
+            pstmt.setString(1, complaint.getLatitude());
+            pstmt.setString(2, complaint.getLongitude());
+            pstmt.setString(3, complaint.getDescription());
+            pstmt.setInt(4, complaint.getId());
+            pstmt.executeUpdate();
+            return "SUCCESS";
+        } catch (SQLException ex) {
+            return ex.getMessage();
+        }
     }
 
-    public Complaint fetchOne(Integer idComplaint) {
+    public Complaint fetchOne(Integer idComplaint) throws SQLException {
+        String query = "SELECT * FROM complaint WHERE id = ?";
         Complaint complaint = new Complaint();
+        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+            pstmt.setInt(1, idComplaint);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    complaint = new Complaint();
+                    complaint.setId(rs.getInt(1));
+                    complaint.setId_user(rs.getInt(2));
+                    complaint.setId_inspector(rs.getInt(3));
+                    complaint.setStatus(rs.getString(4));
+                    complaint.setLatitude(rs.getString(5));
+                    complaint.setLongitude(rs.getString(6));
+                    complaint.setDescription(rs.getString(7));
+                }
+            }
+        }
         return complaint;
     }
 
@@ -64,7 +90,14 @@ public class ComplaintDAO {
         return complaints;
     }
 
-    public Boolean delete(Integer idComplaint) {
-        return true;
+    public String delete(Complaint complaint) throws SQLException {
+        String query = "DELETE FROM complaint WHERE id = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+            pstmt.setInt(1, complaint.getId());
+            pstmt.executeUpdate();
+            return "SUCCESS";
+        } catch (SQLException ex) {
+            return ex.getMessage();
+        }
     }
 }
