@@ -7,8 +7,7 @@ import br.com.caelum.vraptor.jasperreports.download.ReportDownload;
 import static br.com.caelum.vraptor.jasperreports.formats.ExportFormats.pdf;
 import br.com.caelum.vraptor.observer.download.Download;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.servlet.ServletContext;
 import modelo.dao.FactoryConnection;
 
 @Controller
@@ -18,17 +17,19 @@ public class RankingController {
         //Default index page.
     }
     
-    public Download report() {
-        Report report = null;
+    public Download report(final ServletContext context) {
+        Report report;
         try {
+            String jasper = context.getRealPath("/WEB-INF/reports") + "/";
             report = new ReportBuilder()
                     .withTemplate("ranking.jasper")
                     .addParam("java.sql.Connection", FactoryConnection.getConnection())
-                    .withFileName("ranking")
+                    .addParam("SUBREPORT_DIR", jasper)
+                    .withFileName("ranking.pdf")
                     .build();
+            return new ReportDownload(report, pdf());
         } catch (SQLException ex) {
-            Logger.getLogger(RankingController.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException(ex);
         }
-        return new ReportDownload(report, pdf());
     }
 }
