@@ -21,7 +21,7 @@ public class ComplaintDAO {
 
         String query = "INSERT INTO complaint (id_user, status, latitude, longitude, description) VALUES (?, ?, ?, ?, ?);";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
-            pstmt.setInt(1, 1);
+            pstmt.setInt(1, 2);
             pstmt.setString(2, "STARTED");
             pstmt.setString(3, complaint.getLatitude());
             pstmt.setString(4, complaint.getLongitude());

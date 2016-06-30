@@ -149,7 +149,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Descrição</label>
-                                                    <textarea maxlength="50" placeholder="Description" class="form-control" name="complaint.description"></textarea>
+                                                    <textarea maxlength="250" placeholder="Description" class="form-control" name="complaint.description"></textarea>
                                                 </div>
                                                 <div>
                                                     <button class="btn btn-sm btn-primary pull-right m-t-n-xs"
