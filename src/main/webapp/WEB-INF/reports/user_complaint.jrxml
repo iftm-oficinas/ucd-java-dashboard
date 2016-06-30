@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2016-06-29T21:21:22 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="user_complaint" pageWidth="552" pageHeight="842" columnWidth="552" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="513827c1-b77d-4d98-995e-ea6230491bbf">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL"/>
+	<parameter name="idUser" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT 
+	complaint.id_user,
+	complaint.description,
+	complaint.latitude,
+	complaint.longitude,
+	complaint.status
+FROM complaint
+WHERE complaint.id_user = $P{idUser}]]>
+	</queryString>
+	<field name="id_user" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="description" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="latitude" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="longitude" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="status" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<detail>
+		<band height="20">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="138" height="20" uuid="12a4bf97-6f44-4970-be8a-64af84115e3d"/>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#E6E6E6"/>
+					<leftPen lineWidth="1.0" lineColor="#E6E6E6"/>
+					<bottomPen lineWidth="0.0" lineColor="#E6E6E6"/>
+					<rightPen lineWidth="1.0" lineColor="#E6E6E6"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="138" y="0" width="138" height="20" uuid="abf3d675-4af3-4537-b576-406f1300e4b3"/>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#E6E6E6"/>
+					<leftPen lineWidth="1.0" lineColor="#E6E6E6"/>
+					<bottomPen lineWidth="0.0" lineColor="#E6E6E6"/>
+					<rightPen lineWidth="1.0" lineColor="#E6E6E6"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{latitude}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="276" y="0" width="138" height="20" uuid="3773622a-5580-4815-9187-d9f46836943a"/>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#E6E6E6"/>
+					<leftPen lineWidth="1.0" lineColor="#E6E6E6"/>
+					<bottomPen lineWidth="0.0" lineColor="#E6E6E6"/>
+					<rightPen lineWidth="1.0" lineColor="#E6E6E6"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{longitude}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="414" y="0" width="138" height="20" uuid="89565b71-75f3-4d39-b3bb-879867414f3e"/>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#E6E6E6"/>
+					<leftPen lineWidth="1.0" lineColor="#E6E6E6"/>
+					<bottomPen lineWidth="0.0" lineColor="#E6E6E6"/>
+					<rightPen lineWidth="1.0" lineColor="#E6E6E6"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
