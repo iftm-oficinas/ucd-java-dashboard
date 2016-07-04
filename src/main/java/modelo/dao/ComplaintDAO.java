@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.Complaint;
+import modelo.User;
 
 public class ComplaintDAO {
 
@@ -56,8 +57,8 @@ public class ComplaintDAO {
                 if (rs.next()) {
                     complaint = new Complaint();
                     complaint.setId(rs.getInt(1));
-                    complaint.setId_user(rs.getInt(2));
-                    complaint.setId_inspector(rs.getInt(3));
+                    complaint.setUser(new User(rs.getInt(2)));
+                    complaint.setInspector(new User(rs.getInt(3)));
                     complaint.setStatus(rs.getString(4));
                     complaint.setLatitude(rs.getString(5));
                     complaint.setLongitude(rs.getString(6));
@@ -77,8 +78,28 @@ public class ComplaintDAO {
                 while (rs.next()) {
                     complaint = new Complaint();
                     complaint.setId(rs.getInt(1));
-                    complaint.setId_user(rs.getInt(2));
-                    complaint.setId_inspector(rs.getInt(3));
+                    
+                    User user = new User();
+                    User inspector = new User();
+                    
+                    DAOFactory factory = new DAOFactory();
+                    try {
+                        factory.openConnection();
+                        UserDAO dao = factory.createUserDAO();
+                        user = dao.fetchOne(rs.getInt(2));
+                        inspector = dao.fetchOne(rs.getInt(3));
+                    } catch (SQLException ex) {
+                        DAOFactory.showSQLException(ex);
+                    } finally {
+                        try {
+                            factory.closeConnection();
+                        } catch (SQLException ex) {
+                            DAOFactory.showSQLException(ex);
+                        }
+                    }
+
+                    complaint.setUser(user);
+                    complaint.setInspector(inspector);
                     complaint.setStatus(rs.getString(4));
                     complaint.setLatitude(rs.getString(5));
                     complaint.setLongitude(rs.getString(6));

@@ -3,8 +3,8 @@ package modelo;
 public class Complaint {
 
     private Integer id;
-    private Integer id_user;
-    private Integer id_inspector;
+    private User user;
+    private User inspector;
     private String status;
     private String latitude;
     private String longitude;
@@ -17,10 +17,10 @@ public class Complaint {
         this.id = id;
     }
 
-    public Complaint(Integer id, Integer id_user, Integer id_inspector, String status, String latitude, String longitude, String description) {
+    public Complaint(Integer id, User user, User inspector, String status, String latitude, String longitude, String description) {
         this.id = id;
-        this.id_user = id_user;
-        this.id_inspector = id_inspector;
+        this.user = user;
+        this.inspector = inspector;
         this.status = status;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -35,20 +35,20 @@ public class Complaint {
         this.id = id;
     }
 
-    public Integer getId_user() {
-        return id_user;
+    public User getUser() {
+        return user;
     }
 
-    public void setId_user(Integer id_user) {
-        this.id_user = id_user;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Integer getId_inspector() {
-        return id_inspector;
+    public User getinspector() {
+        return inspector;
     }
 
-    public void setId_inspector(Integer id_inspector) {
-        this.id_inspector = id_inspector;
+    public void setInspector(User inspector) {
+        this.inspector = inspector;
     }
 
     public String getStatus() {
@@ -85,7 +85,7 @@ public class Complaint {
 
     @Override
     public String toString() {
-        return "Complaint{" + "id=" + id + ", id_user=" + id_user + ", id_inspector=" + id_inspector + ", status=" + status + ", latitude=" + latitude + ", longitude=" + longitude + ", description=" + description + '}';
+        return "Complaint{" + "id=" + id + ", user=" + user.toString() + ", inspector=" + inspector.toString() + ", status=" + status + ", latitude=" + latitude + ", longitude=" + longitude + ", description=" + description + '}';
     }
 
 }
