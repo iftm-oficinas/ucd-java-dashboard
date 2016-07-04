@@ -79,9 +79,9 @@ public class ComplaintDAO {
                     complaint.setId(rs.getInt(1));
                     complaint.setId_user(rs.getInt(2));
                     complaint.setId_inspector(rs.getInt(3));
-                    complaint.setLatitude(rs.getString(4));
-                    complaint.setLongitude(rs.getString(5));
-                    complaint.setStatus(rs.getString(6));
+                    complaint.setStatus(rs.getString(4));
+                    complaint.setLatitude(rs.getString(5));
+                    complaint.setLongitude(rs.getString(6));
                     complaint.setDescription(rs.getString(7));
                     complaints.add(complaint);
                 }
